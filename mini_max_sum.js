@@ -28,14 +28,19 @@ function readLine() {
 
 function miniMaxSum(arr) {
     // Write your code here
-    return Array(arr.lenght).fill(0).reduce((result, elem, ind)=>{
-       const temp = (arr(ind+1) - (result + elem));
-       console.log(temp)
-       return result
+    return arr.reduce((result, elem, ind,_arr)=>{
+    const x =arr.slice();
+    x.splice(ind, 1);
+    let sum=x.reduce((result,elem)=>{return result+elem},0)
+    if(ind==0){
+        return [sum, sum]
+    }
+    return result[0]>sum?[sum,result[1]]:result[1]<sum?[result[0],sum]:result
     },[0,0])
+    console.log(result[0], " ", result[1])
 }
+console.log(miniMaxSum([1,2,3,4,5,6]))
 
-miniMaxSum(1,2,3,4,5)
 
 function main() {
 
