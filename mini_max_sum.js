@@ -28,7 +28,9 @@ function readLine() {
 
 function miniMaxSum(arr) {
     // Write your code here
-
+    return Array(arr.lenght).fill(0).reduce((result, elem)=>{
+        
+    },[0,0])
 }
 
 function main() {
