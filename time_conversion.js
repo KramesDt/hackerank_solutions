@@ -30,10 +30,17 @@ function readLine() {
  */
 
 function timeConversion(s) {
-    const time = s.splice(8, 2)
-    console.log(time)
-    const zone = time.split(':')
-    
+    const trash = s.split(':')
+    const zone = s.split('');
+    const time = zone.splice(8, 2);
+
+    if(zone.splice(8, 2) == ['P', 'M']){
+        parseInt(trash[0] + 12)
+        trash.splice(2, 1)
+    }
+
+
+    console.log(trash)
 }
 
 timeConversion("07:05:45PM");
