@@ -32,11 +32,12 @@ function readLine() {
 function timeConversion(s) {
     const trash = s.split(':')
     const zone = s.split('');
-    const time = zone.splice(8, 2);
 
     if(zone.splice(8, 2) == ['P', 'M']){
-        parseInt(trash[0] + 12)
-        trash.splice(2, 1)
+        const time = parseInt(trash[0] + 12);
+        trash.splice(2, 1);
+    }else if(parseint(trash[0]) >= 12){
+        parseint(trash[0]) - 12;
     }
 
 
