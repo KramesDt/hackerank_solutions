@@ -28,7 +28,7 @@ function readLine() {
 
 function miniMaxSum(arr) {
     // Write your code here
-    return arr.reduce((result, elem, ind,_arr)=>{
+    arr.reduce((result, elem, ind,_arr)=>{
     const x =arr.slice();
     x.splice(ind, 1);
     let sum=x.reduce((result,elem)=>{return result+elem},0)

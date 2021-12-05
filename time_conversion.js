@@ -30,10 +30,13 @@ function readLine() {
  */
 
 function timeConversion(s) {
-    // Write your code here
+    const time = s.splice(8, 2)
+    console.log(time)
+    const zone = time.split(':')
     
-
 }
+
+timeConversion("07:05:45PM");
 
 // function main() {
 //     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
