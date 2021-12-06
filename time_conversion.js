@@ -36,7 +36,7 @@ function timeConversion(s) {
     if(zone.splice(8, 2) == ['P', 'M']){
         const time = parseInt(trash[0] + 12);
         trash.splice(2, 1);
-    }else if(parseint(trash[0]) >= 12){
+    }else if( parseint(trash[0]) >= 12){
         parseint(trash[0]) - 12;
     }
 
