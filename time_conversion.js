@@ -41,7 +41,7 @@ function timeConversion(s) {
     }
 
 
-    console.log(trash)
+    return trash;
 }
 
 timeConversion("07:05:45PM");
