@@ -1,25 +1,25 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
+const fs = require("fs");
 
 process.stdin.resume();
-process.stdin.setEncoding('utf-8');
+process.stdin.setEncoding("utf-8");
 
-let inputString = '';
+let inputString = "";
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
-    inputString += inputStdin;
+process.stdin.on("data", function (inputStdin) {
+  inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
-    inputString = inputString.split('\n');
+process.stdin.on("end", function () {
+  inputString = inputString.split("\n");
 
-    main();
+  main();
 });
 
 function readLine() {
-    return inputString[currentLine++];
+  return inputString[currentLine++];
 }
 
 /*
@@ -30,21 +30,18 @@ function readLine() {
  */
 
 function timeConversion(s) {
-    const trash = s.split(':')
-    const zone = s.split('');
-
-    if(zone.splice(8, 2) == ['P', 'M']){
-        const time = parseInt(trash[0] + 12);
-        trash.splice(2, 1);
-    }else if( parseint(trash[0]) >= 12){
-        parseint(trash[0]) - 12;
-    }
-
-
-    return trash;
+  const time24 = s.slice(0, 8).split(":");
+  const zone = s.slice(8);
+  if (zone == "PM") {
+    const time = parseInt(time24[0]) + 12;
+    time24.splice(0, 1, time);
+  } else if (zone == "AM" && time24[0] == "12") {
+    const time = parseInt(time24[0]) - 12;
+    time24.splice(0, 1, time);
+  }
 }
 
-timeConversion("07:05:45PM");
+timeConversion("12:05:45AM");
 
 // function main() {
 //     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);

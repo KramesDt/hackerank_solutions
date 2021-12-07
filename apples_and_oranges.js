@@ -1,25 +1,23 @@
-'use strict';
-
-const { count } = require("console");
+"use strict";
 
 process.stdin.resume();
-process.stdin.setEncoding('utf-8');
+process.stdin.setEncoding("utf-8");
 
-let inputString = '';
+let inputString = "";
 let currentLine = 0;
 
-process.stdin.on('data', function(inputStdin) {
-    inputString += inputStdin;
+process.stdin.on("data", function (inputStdin) {
+  inputString += inputStdin;
 });
 
-process.stdin.on('end', function() {
-    inputString = inputString.split('\n');
+process.stdin.on("end", function () {
+  inputString = inputString.split("\n");
 
-    main();
+  main();
 });
 
 function readLine() {
-    return inputString[currentLine++];
+  return inputString[currentLine++];
 }
 
 /*
@@ -34,46 +32,57 @@ function readLine() {
  *  6. INTEGER_ARRAY oranges
  */
 
-function countApplesAndOranges(s, t, a, b, apples, oranges) {
-    // Write your code here
-    console.log(apples.reduce((result, elem, ind)=>{
-        result[ind] = a + elem;
-        if(elem >= s && elem <=t){let count = count + 1};
-        console.log("count is :", count);
-        return result;
-    },[]));
-
-    // oranges.reduce((result, elem, ind)=>{
-    //     result[ind] = b + elem;
-    //     return result;
-    // },[])
-
+function takeApplesAndOranges(s, t, fruit, fruitArray) {
+  return fruitArray.reduce((result, elem, ind) => {
+      const temp = fruit + elem;
+      if (temp >= s && temp <= t) {
+        console.log("count is :", result.count);
+        result.count++;
+      }
+      result.result[ind] = temp;
+      return result;
+    },{ result: [], count: 0 })["count"]
 }
 
-countApplesAndOranges(7,10,4,6,[2,3,-4], [1,2,3]);
+function countApplesAndOranges(s, t, a, b, apples, oranges) {
+  // Write your code here
+
+  var appleCount = takeApplesAndOranges(s, t, a, apples);
+  var orangeCount = takeApplesAndOranges(s, t, b, oranges);
+
+  console.log("\n",appleCount,"\n",orangeCount);
+}
+
+countApplesAndOranges(7, 10, 4, 6, [2, 3, -4], [1, 2, 3]);
 
 function main() {
-    const firstMultipleInput = readLine().replace(/\s+$/g, '').split(' ');
+  const firstMultipleInput = readLine().replace(/\s+$/g, "").split(" ");
 
-    const s = parseInt(firstMultipleInput[0], 10);
+  const s = parseInt(firstMultipleInput[0], 10);
 
-    const t = parseInt(firstMultipleInput[1], 10);
+  const t = parseInt(firstMultipleInput[1], 10);
 
-    const secondMultipleInput = readLine().replace(/\s+$/g, '').split(' ');
+  const secondMultipleInput = readLine().replace(/\s+$/g, "").split(" ");
 
-    const a = parseInt(secondMultipleInput[0], 10);
+  const a = parseInt(secondMultipleInput[0], 10);
 
-    const b = parseInt(secondMultipleInput[1], 10);
+  const b = parseInt(secondMultipleInput[1], 10);
 
-    const thirdMultipleInput = readLine().replace(/\s+$/g, '').split(' ');
+  const thirdMultipleInput = readLine().replace(/\s+$/g, "").split(" ");
 
-    const m = parseInt(thirdMultipleInput[0], 10);
+  const m = parseInt(thirdMultipleInput[0], 10);
 
-    const n = parseInt(thirdMultipleInput[1], 10);
+  const n = parseInt(thirdMultipleInput[1], 10);
 
-    const apples = readLine().replace(/\s+$/g, '').split(' ').map(applesTemp => parseInt(applesTemp, 10));
+  const apples = readLine()
+    .replace(/\s+$/g, "")
+    .split(" ")
+    .map((applesTemp) => parseInt(applesTemp, 10));
 
-    const oranges = readLine().replace(/\s+$/g, '').split(' ').map(orangesTemp => parseInt(orangesTemp, 10));
+  const oranges = readLine()
+    .replace(/\s+$/g, "")
+    .split(" ")
+    .map((orangesTemp) => parseInt(orangesTemp, 10));
 
-    countApplesAndOranges(s, t, a, b, apples, oranges);
+  countApplesAndOranges(s, t, a, b, apples, oranges);
 }
