@@ -37,7 +37,7 @@ function timeConversion(s) {
     time24.splice(0, 1, time);
   } else if (zone == "AM" && time24[0] == "12") {
     const time = parseInt(time24[0]) - 12;
-    time24.splice(0, 1, time);
+    time24.splice(0, 1, time)
   }
 }
 
